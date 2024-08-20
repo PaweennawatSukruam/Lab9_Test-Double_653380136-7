@@ -32,3 +32,4 @@ class Country:
             if name.lower().startswith(letter.lower()):
                 result.append(name)
         return result
+
