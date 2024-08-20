@@ -4,7 +4,7 @@ from unittest.mock import Mock
 
 
 class CurrencyExchanger:
-    def __init__(self, base_currency="THB", target_currency="USD"):
+    def __init__(self, base_currency="THB", target_currency="KRW"):
         self.currency_api = "https://coc-kku-bank.com/foreign-exchange"
         self.base_currency = base_currency
         self.target_currency = target_currency
