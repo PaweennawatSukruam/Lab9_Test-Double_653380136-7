@@ -2,8 +2,13 @@
 # Integration testing using Mock - Crate Mock object to mimic the behavior of external service
 
 from unittest.mock import patch
-from demo.source.country import Country
-from demo.tests.utils import get_mock_country_api_response
+import sys
+sys.path.insert(0,'/workspaces/Lab9_Test-Double_653380136-7/Lab9/demo/source')
+sys.path.insert(0,'/workspaces/Lab9_Test-Double_653380136-7/Lab9/demo/tests')
+from country import Country
+from utils import get_mock_country_api_response
+# from demo.source.country import Country
+# from demo.tests.utils import get_mock_country_api_response
 
 import unittest
 
@@ -14,7 +19,7 @@ class TestCountry(unittest.TestCase):
         self.mock_api_response = get_mock_country_api_response()
 
     # Mock the 'request' package from source.country
-    @patch("demo.source.country.requests")
+    @patch("country.requests")
     def test_get_country_name(self, mock_request):
         # Assign mock's return value
         mock_request.get.return_value = self.mock_api_response
@@ -32,7 +37,7 @@ class TestCountry(unittest.TestCase):
         self.assertIsNotNone(self.country.country_name_response)
         self.assertEqual(self.country.country_name_response, self.mock_api_response.json())
 
-    @patch("demo.source.country.requests")
+    @patch("country.requests")
     def test_get_country_name_start_with_letter(self, mock_request):
         mock_request.get.return_value = self.mock_api_response
 
