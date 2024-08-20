@@ -13,7 +13,7 @@ class TestCurrencyExchanger(unittest.TestCase):
         mock_request.get.return_value = self.mock_api_response
         self.currency_exchanger.get_currency_rate()
         mock_request.get.assert_called_once()
-        mock_request.get.assert_called_with("https://coc-kku-bank.com/foreign-exchange")
+        mock_request.get.assert_called_with('https://coc-kku-bank.com/foreign-exchange',  params={'from': 'THB', 'to': 'KRW'})
         self.assertIsNotNone(self.currency_exchanger.api_response)
         self.assertEqual(self.currency_exchanger.api_response, self.mock_api_response.json())
 
