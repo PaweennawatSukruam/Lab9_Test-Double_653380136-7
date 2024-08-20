@@ -25,8 +25,9 @@ class CurrencyExchanger:
         self.get_currency_rate()
         # Implement function to calculate the currency from base currency to the target currency
         currency = self.api_response
-        amount = amount * currency
+        for rate in currency:
+            if rate is int:
+                amount = amount * rate
         return amount
     
-
 
