@@ -4,7 +4,7 @@ from unittest.mock import Mock
 
 
 class CurrencyExchanger:
-    def __init__(self, base_currency="THB", target_currency="KRW"):
+    def __init__(self, base_currency="THB", target_currency="USD"):
         self.currency_api = "https://coc-kku-bank.com/foreign-exchange"
         self.base_currency = base_currency
         self.target_currency = target_currency
@@ -24,10 +24,13 @@ class CurrencyExchanger:
     def currency_exchange(self, amount):
         self.get_currency_rate()
         # Implement function to calculate the currency from base currency to the target currency
-        currency = self.api_response
-        for rate in currency:
-            if rate is int:
-                amount = amount * rate
-        return amount
+        if self.api_response is None:
+            return None  
+        try:
+            exchange_rate = self.api_response["result"][self.target_currency]
+            converted_amount = amount * exchange_rate
+            return converted_amount
+        except (KeyError, TypeError):
+            return None 
     
 

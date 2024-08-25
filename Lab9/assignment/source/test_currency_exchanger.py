@@ -5,7 +5,7 @@ import unittest
 
 class TestCurrencyExchanger(unittest.TestCase):
     def setUp(self):
-        self.currency_exchanger = CurrencyExchanger()
+        self.currency_exchanger = CurrencyExchanger(target_currency="KRW")
         self.mock_api_response = get_mock_currency_api_response()
         self.base_currency="THB"
         self.target_currency="KRW"
